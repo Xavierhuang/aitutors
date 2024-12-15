@@ -5,21 +5,30 @@ export default defineConfig({
   plugins: [react({
     include: "**/*.{jsx,tsx,js,ts}",
   })],
+  base: '/',
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    rollupOptions: {
+      input: {
+        main: './index.html'
+      }
+    }
+  },
   server: {
     port: 5174,
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'https://theaitutors.com',
         changeOrigin: true,
-        secure: false
+        secure: true
       },
       '/MachineLearning6025': {
-        target: 'http://localhost:3000',
+        target: 'https://theaitutors.com',
         changeOrigin: true,
-        secure: false
+        secure: true
       }
-    },
-    host: 'theaitutors.com'
+    }
   },
   resolve: {
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']

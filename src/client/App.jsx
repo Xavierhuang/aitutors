@@ -84,9 +84,9 @@ async function loadQuestionsAndAnswers() {
 console.log('OpenAI client initialized with key:', !!openai.apiKey);
 
 // Update the API endpoint
-const API_URL = import.meta.env.PROD 
+const API_URL = process.env.NODE_ENV === 'production' 
   ? 'https://theaitutors.com' 
-  : 'http://localhost:3000';
+  : 'http://localhost:3001';
 
 // Add this function to check if it's a material request
 const isMaterialRequest = (text) => {
@@ -384,15 +384,31 @@ function App() {
           }
         });
       } else {
-        // If no answer found, use the default response
-        dispatch({
-          type: 'ADD_MESSAGE',
-          payload: {
-            role: 'assistant',
-            content: "I can help you find specific materials or answer questions about the course content. Try asking 'Can you send me all the materials' to see everything available.",
-            timestamp: new Date().toISOString()
-          }
-        });
+        // If no match found, use the fine-tuned model
+        try {
+          const response = await callFineTunedModel(
+            `Question: ${userQuestion}\nProvide a detailed answer about this machine learning concept.`
+          );
+          
+          dispatch({
+            type: 'ADD_MESSAGE',
+            payload: {
+              role: 'assistant',
+              content: response,
+              timestamp: new Date().toISOString()
+            }
+          });
+        } catch (err) {
+          console.error('Error calling fine-tuned model:', err);
+          dispatch({
+            type: 'ADD_MESSAGE',
+            payload: {
+              role: 'assistant',
+              content: "I can help you find specific materials or answer questions about the course content. Try asking 'Can you send me all the materials' to see everything available.",
+              timestamp: new Date().toISOString()
+            }
+          });
+        }
       }
     }
   };

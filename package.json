@@ -6,8 +6,8 @@
     "dev": "concurrently -n \"server,client\" \"npm run start:server\" \"npm run start:client\"",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "node server.js",
-    "start:prod": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "start:prod": "NODE_ENV=production pm2 start server.js --name \"aitutors\""
   },
   "dependencies": {
     "body-parser": "^1.20.3",

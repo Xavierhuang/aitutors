@@ -130,7 +130,7 @@ app.use(helmet({
 
 // CORS configuration
 app.use(cors({
-  origin: ['http://localhost:5174', 'http://localhost:3000'],
+  origin: ['https://theaitutors.com', 'http://theaitutors.com'],
   methods: ['GET', 'POST', 'OPTIONS'],
   credentials: true
 }));
@@ -142,10 +142,13 @@ app.options('*', cors());
 app.use(express.json({ limit: '10mb' }));
 
 // Serve static files
-app.use(express.static(path.join(__dirname)));
+// app.use(express.static(path.join(__dirname)));
 console.log('Serving static files from:', __dirname);
 
-// Add route to serve files from MachineLearning6025
+// Serve static files from the dist directory
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// Serve your materials directory
 app.use('/MachineLearning6025', express.static(path.join(__dirname, 'MachineLearning6025')));
 
 // Scan materials when server starts
@@ -415,6 +418,7 @@ app.use((err, req, res, next) => {
 
 console.log('Starting server...');
 console.log('Current directory:', __dirname);
+console.log('Environment:', process.env.NODE_ENV);
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
