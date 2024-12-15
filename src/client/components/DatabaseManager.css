@@ -1,0 +1,181 @@
+.database-manager {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 400px;
+  bottom: 0;
+  background: white;
+  z-index: 2000;
+  padding: 0;
+  overflow-y: auto;
+  border-right: 1px solid var(--border-color);
+}
+
+.database-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  z-index: 2001;
+}
+
+.database-header h2 {
+  margin: 0;
+  flex: 1;
+}
+
+.search-input {
+  width: 300px;
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.close-button {
+  padding: 0.8rem 1.5rem;
+  background: var(--error-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  z-index: 2002;
+}
+
+.entries-list {
+  width: 100%;
+  padding: 0 2rem;
+}
+
+.entries-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.entries-list th,
+.entries-list td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.entries-list th {
+  background: var(--background-color);
+  font-weight: 600;
+  position: sticky;
+  top: 64px;
+  z-index: 2000;
+}
+
+.entries-list td textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.entries-list td button {
+  padding: 0.5rem 1rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.entries-list td button:hover {
+  background: var(--primary-hover);
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+}
+
+/* Column widths */
+.entries-list th:nth-child(1), 
+.entries-list td:nth-child(1) {
+  width: 50px;
+}
+
+.entries-list th:nth-child(2), 
+.entries-list td:nth-child(2),
+.entries-list th:nth-child(3), 
+.entries-list td:nth-child(3) {
+  width: calc((100% - 250px) / 2);
+}
+
+.entries-list th:nth-child(4), 
+.entries-list td:nth-child(4) {
+  width: 150px;
+  text-align: center;
+}
+
+.database-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 10px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.05), transparent);
+  pointer-events: none;
+}
+
+.new-entry-form {
+  padding: 1rem 2rem;
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.new-entry-form input {
+  flex: 1;
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.new-entry-form button {
+  padding: 0.8rem 1.5rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.delete-button {
+  background: var(--error-color) !important;
+}
+
+.delete-button:hover {
+  background: #dc2626 !important;
+}
+  

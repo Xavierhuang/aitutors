@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: ai-learning-assistant
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+    domains:
+      - theaitutors.com
+      - www.theaitutors.com
